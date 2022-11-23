@@ -93,9 +93,9 @@
               {% if comment.is_checked %}
                 <div class="testimonial-wrap">
                   <div class="testimonial">
-                      <img class="img-fluid" src="/media/{{ comment.photo }}" style="height: 80px;" alt="Image">
+                      <img class="img-fluid photo-comm" src="/media/{{ comment.photo }}" alt="Image">
                       <blockquote>
-                        <p>{{comment.comment}}</p>
+                        <p class="comment-text">{{comment.comment}}</p>
                       </blockquote>
                       <p>&mdash; {{comment.user_name}}</p><br>
                       <p>Site "{{comment.web_site}}"</p>
@@ -109,7 +109,7 @@
 
         <div class="row justify-content-center text-center mb-4 mt-40">
           <div class="col-5">
-            <p><a href="{% url 'index' %}" class="readmore">Оставить отзыв</a></p>
+            <p><a href="{% url 'comment' %}" class="readmore">Оставить отзыв</a></p>
           </div>
         </div>
 

@@ -3,7 +3,7 @@
       <div class="row align-items-start">
         <div class="col-md-2">
           <ul class="custom-menu">
-            <li class="{% if request.resolver_match.view_name == 'about'%} active {% endif %}"><a href="{% url 'about' %}">Главная</a></li>
+            <li class="{% if request.resolver_match.view_name == 'about'%} active {% endif %}"><a class="colour" href="{% url 'about' %}">Главная</a></li>
             <li class="{% if request.resolver_match.view_name == 'index'%} active {% endif %}"><a href="{% url 'index' %}">Отзывы</a></li>
             <li class="{% if request.resolver_match.view_name == 'education'%} active {% endif %}"><a href="{% url 'education' %}">Образование</a></li>
             <li class="{% if request.resolver_match.view_name == 'works'%} active {% endif %}"><a href="{% url 'works' %}">Работы</a></li>

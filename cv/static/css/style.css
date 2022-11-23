@@ -209,7 +209,7 @@ h6,
 .readmore:hover {
   color: #fff;
   text-decoration: none;
-  background: #d6a609;
+  background: #b3aa89;
 }
 
 .testimonial-carousel .owl-dots {
@@ -390,6 +390,7 @@ h6,
 
 .custom-navmenu .custom-menu li a:hover {
   text-decoration: none;
+  color: #8f520a;
 }
 
 .custom-navmenu .custom-menu li.active a {
@@ -592,14 +593,20 @@ h6,
     box-shadow: -10px -27px 35px 38px #ffffdf inset;}
 
 .bord-bot{
-    background: white;
-    padding: 10px;
-    border-radius: 20px;
+    background: #f3eece;
+    padding: 15px;
+    border-radius: 10px;
 }
 .bord-bot:hover{
     text-decoration: blink;
     font-weight: 600;
 }
+
+.photo-comm{
+    object-fit: cover;
+    height: 80px;
+    width: 80px !important;}
+
 
 /* SKILLS */
 @media (min-width: 767px) and (max-width: 768px) {
@@ -661,11 +668,15 @@ h6,
   }
 }
 
-@media (min-width: 200px) and (max-width: 767px) {
+@media (min-width: 395px) and (max-width: 767px) {
   .img-top {
     top:345px;
   }
 }
+@media (min-width: 200px) and (max-width: 395px) {
+  .img-top {
+    top:360px;
+  }}
 @media (min-width: 380px) and (max-width: 617px) {
   .img-about {
     height: 350px;
@@ -699,3 +710,63 @@ h6,
   }
 }
 
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .flex-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .flex-img {
+    max-width: 150%;
+  }
+}
+@media (min-width: 768px) {
+    .comment-text{
+        min-height:210px;}}
+@media (min-width: 514px) and (max-width: 768px) {
+    .comment-text{
+        min-height:270px;}}
+@media (min-width: 466px) and (max-width: 514px) {
+    .comment-text{
+        min-height:300px;}}
+@media (min-width: 442px) and (max-width: 466px) {
+    .comment-text{
+        min-height:330px;}}
+@media (min-width: 406px) and (max-width: 442px) {
+    .comment-text{
+        min-height:390px;}}
+@media (min-width: 370px) and (max-width: 406px) {
+    .comment-text{
+        min-height:420px;}}
+@media (min-width: 358px) and (max-width: 370px) {
+    .comment-text{
+        min-height:450px;}}
+@media (min-width: 346px) and (max-width: 358px) {
+    .comment-text{
+        min-height:510px;}}
+@media (min-width: 334px) and (max-width: 346px) {
+    .comment-text{
+        min-height:570px;}}
+@media (min-width: 322px) and (max-width: 334px) {
+    .comment-text{
+        min-height:600px;}}
+@media (min-width: 281px) and (max-width: 322px) {
+    .comment-text{
+        min-height:660px;}}
+@media (max-width: 281px) {
+    .comment-text{
+        min-height:810px;}}
+
+/*
+@media (min-width: 768px){
+    .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;}}
+
+@media (min-width: 992px){
+    .container{
+        padding-left: 200px;
+        padding-right: 200px;}}
+*/

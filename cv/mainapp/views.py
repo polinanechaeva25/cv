@@ -80,3 +80,9 @@ class EducationListView(TitleContextMixin, ListView):
         )
         context['course_list'] = Certificate.objects.order_by(Lower('add_datetime').desc())
         return context
+
+
+class CommentListView(TitleContextMixin, ListView):
+    title = 'Оставить комментарий'
+    template_name = 'mainapp/comment.html'
+    model = Comment
