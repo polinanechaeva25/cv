@@ -1,0 +1,115 @@
+{% extends 'mainapp/base.html'%}
+{%load static%}
+
+
+
+{%block 'content' %}
+  <div class="site-section">
+
+
+
+      <div class="container img-site-container">
+
+<!--              <div class="row justify-content-center text-center mb-4">-->
+<!--          <div class="col-5">-->
+<!--            <h3 class="h3 heading">Мои работы</h3>-->
+<!--            <p>Все данные размещены с согласия владельцев</p>-->
+<!--          </div>-->
+<!--          </div>-->
+
+              <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-5">
+            <h3 class="h3 heading">Сайт йоги</h3>
+            <p>Площадка для продажи авторских онлайн-курсов по йоге</p>
+          </div>
+        </div>
+
+
+        <div class="row mb-50">
+          <div class="col-4 col-sm-4 col-md-2">
+            <a href="{% static 'img/yoga_1.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_1.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2">
+            <a href="{% static 'img/yoga_6.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_6.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2">
+            <a href="{% static 'img/yoga_2.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_2.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2">
+            <a href="{% static 'img/yoga_3.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_3.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2">
+            <a href="{% static 'img/yoga_4.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_4.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2 ">
+            <a href="{% static 'img/yoga_5.jpg' %}" class="client-logo highslide" onclick="return hs.expand(this)">
+              <img src="{% static 'img/yoga_5.jpg' %}" alt="Image" class="img-fluid img-mini"></a>
+          </div>
+        </div>
+        <img class="img-site" src="{% static 'img/yoga_cross.jpg' %}">
+      </div>
+<br>
+        <div class="row">
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <span class="la la-cube la-3x mb-4"></span>
+            <h4 class="h4 mb-2">Дизайн</h4>
+            <p>Выбор основной цветовой гаммы текстов и изображений</p>
+            <ul class="list-unstyled list-line">
+              <li>Из предоставленных фотографий, были выбраны, наиболее гармонирующие между собой</li>
+              <li>Цвет соответствует тематике сайта</li>
+              <li>Стиль и оформление текста играют большую роль</li>
+              <li>Изображения на сраницах отображают тематику страницы</li>
+              <li>Удобная навигация по страницам</li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <span class="la la-mobile la-3x mb-4"></span>
+            <h4 class="h4 mb-2">Кроссплатформенность</h4>
+            <p>Страница сайта открывается корректно на любом устройстве:</p>
+            <ul class="list-unstyled list-line">
+              <li>Можно быстро открыть в дороге с телефона</li>
+              <li>Внимательно изучить на мониторе компьютера</li>
+              <li>Рассмотреть детали на большом экране телевизора</li>
+              <li>Открыть с помощью планшета</li>
+            </ul>
+            <p>Любой девайс подойдет для работы, все элементы будут выглядеть так же красиво!</p>
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <span class="la la-image la-3x mb-4"></span>
+            <h4 class="h4 mb-2">Обработка изображений</h4>
+            <p>По просьбе клиента, было выполненено удаление фона с изображений</p>
+            <ul class="list-unstyled list-line">
+              <li></li>
+              <li>Интегрирование изображений в различные локации на страницах</li>
+              <li>Отбор фотографий наиболее высокого качества</li>
+              <li>Помощь сразработкой логотипа</li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <span class="la la-search la-3x mb-4"></span>
+            <h4 class="h4 mb-2">Хранение данных</h4>
+            <p>Данные постов и комментариев хранятся в базе данных</p>
+            <ul class="list-unstyled list-line">
+              <li>Надежно и безопасно</li>
+              <li>Быстрый доступ к данным и их корректировка</li>
+              <li>Легкая обработка данных</li>
+              <li>Автоматизированная валидация</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<br>
+
+
+
+  {% endblock %}

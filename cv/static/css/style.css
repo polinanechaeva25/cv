@@ -10,9 +10,10 @@
 --------------------------------------------------------------*/
 
 body {
-  font-family: "Inconsolata", monosapce;
+  font-family: 'Roboto Mono', monospace;
   color: #0d1e2d;
   background: #ffffdf
+
 }
 
 a {
@@ -30,11 +31,11 @@ h4,
 h5,
 h6,
 .font-heading {
-  font-family: "Raleway", sans-serif;
+   font-family: 'Poiret One', cursive;
 }
 
 .site-section {
-  padding: 7rem 0;
+  padding: 2rem 0;
 }
 
 .filters a {
@@ -104,9 +105,8 @@ h6,
   transition: .3s transform ease;
   -webkit-transform: scale(1);
   transform: scale(1);
-  width: 350px !important;
-  height: 350px;
   object-fit: cover;
+  aspect-ratio: auto;
 }
 
 .item .item-wrap > .work-info {
@@ -157,7 +157,7 @@ h6,
 
 .testimonial-wrap {
   padding: 50px 50px 80px 50px;
-  background: #eceff2;
+  background: #fffef2;
 }
 
 .testimonial-wrap .testimonial {
@@ -190,13 +190,14 @@ h6,
 
 .readmore {
   display: inline-block;
-  border: 1px solid #000;
+  border: 1px solid #783d22;
   padding: 10px 15px;
   font-size: 12px;
   text-transform: uppercase;
   color: #000;
   transition: .2s all ease;
   font-weight: 700;
+  background: #ffffdf;
 }
 
 .readmore:active,
@@ -208,7 +209,7 @@ h6,
 .readmore:hover {
   color: #fff;
   text-decoration: none;
-  background: #000;
+  background: #d6a609;
 }
 
 .testimonial-carousel .owl-dots {
@@ -264,7 +265,7 @@ h6,
 
 .form-control {
   border-radius: 0;
-  background: #f8f9fa;
+  background: #fffff0;
   border: 1px solid transparent;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
@@ -272,7 +273,7 @@ h6,
 
 .form-control:active,
 .form-control:focus {
-  background: #eff1f4;
+  background: #faf3d7;
   outline: none;
   box-shadow: none;
   border: 1px solid transparent;
@@ -281,6 +282,7 @@ h6,
 .custom-progress {
   height: 7px;
   border-radius: 0;
+  background: #fffafa;
 }
 
 .custom-progress .progress-bar {
@@ -366,7 +368,7 @@ h6,
 /* Custom Navmenu */
 
 .custom-navmenu {
-  background: #0d1e2d;
+  background: #d6a609;
 }
 
 .custom-navmenu .custom-menu,
@@ -400,11 +402,11 @@ h6,
 }
 
 .custom-navmenu p {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 1);
 }
 
 .custom-navmenu a {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 1);
 }
 
 .custom-navmenu a:hover {
@@ -504,7 +506,9 @@ h6,
 }
 
 .footer {
-  padding: 0 0 4rem 0;
+  margin-top: 4rem;
+  padding: 4rem 0 4rem 0;
+  background: #ffdb58;
 }
 
 .footer a {
@@ -516,7 +520,7 @@ h6,
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #f8f9fa;
+  background: #fffef2;
   position: relative;
   text-align: center;
   color: #0d1e2d;
@@ -541,3 +545,85 @@ h6,
     padding-left: 0;
   }
 }
+/*______________________*/
+.logo{
+    width:200px;}
+
+.img-about{
+    height: 550px;
+    width: 550px;
+    object-fit: cover;
+    }
+
+.mt-40{
+    margin-top: 40px}
+
+.mb-50{
+    margin-bottom: 50px}
+
+.img-site{
+    border-radius: 2%;
+    box-shadow: 0.4em 0.4em 30px rgba(122,122,122,0.5);
+    height: 550px;
+    width: 900px;
+    object-fit: cover;}
+
+.img-site-container{
+    text-align: center;}
+
+.img-mini{
+    border-radius: 15%;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);}
+
+.image-blurred-edge {
+    background-image: url(http://127.0.0.1:8000/static/img/logo_fav.png);
+    background-size: 250px auto;
+    width: 305px;
+    height: 147px;
+    box-shadow: -10px -27px 35px 38px #ffffdf inset;}
+
+.bord-bot{
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+.bord-bot:hover{
+    text-decoration: blink;
+    font-weight: 600;
+}
+
+/* SKILLS */
+@media (min-width: 768px) and (max-width: 992px) {
+  .top-pick {
+    left:100px;
+  }
+}
+@media (min-width: 617px) and (max-width: 767px) {
+  .top-pick {
+    top:-1440px;
+  }
+}@media (min-width: 200px) and (max-width: 617px) {
+  .top-pick {
+    top:-1240px;
+  }
+}
+/* PHOTO */
+@media (min-width: 200px) and (max-width: 768px) {
+  .img-top {
+    top:345px;
+  }
+}
+@media (min-width: 200px) and (max-width: 617px) {
+  .img-about {
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+  }
+}
+/* BOTTON */
+@media (min-width: 200px) and (max-width: 768px) {
+  .bottom-top {
+    top:330px;
+  }
+}
+
