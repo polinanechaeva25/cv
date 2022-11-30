@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html'%}
 {%load static%}
+{% load crispy_forms_tags %}
 
 {%block 'content' %}
 <main id="main">
@@ -20,66 +21,31 @@
         <div class="row">
           <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up">
 
-            <form action="#" method="post" role="form" class="php-email-form">
 
-              <div class="row">
-                <div class="col-md-12 form-group">
 
-                  <label for="name">Имя</label>
-                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
+            <form action="/comment/create/" method="post" role="form" enctype="multipart/form-data">
 
-                </div>
-                <div class="col-md-12 form-group">
 
-                  <label for="name">Email</label>
-                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
+                    {% csrf_token %}
+                    {% crispy comment_form %}
 
-                </div>
-                <div class="col-md-12 form-group">
 
-                  <label for="name">Название проекта</label>
-                  <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+<!--              <div class="row">-->
 
-                    <div class="validate"></div>
-                </div>
-                <div class="col-md-12 form-group">
 
-                  <label for="name">Комментарий</label>
-                  <textarea class="form-control" name="message" cols="30" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
-                  <div class="validate"></div>
 
-                </div>
+
 <!--                <div class="col-md-12 form-group">-->
 
-<!--                  <label for="name">Фото</label>-->
-<!--                  <input type="file" class="form-control" name="photo" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
-
-<!--                    <div class="validate"></div>-->
-<!--                </div>-->
-                <div class="col-md-12 form-group">
-
-                  <div class="input__wrapper">
-                     <input name="file" type="file" id="input__file" class="input input__file" multiple>
-                     <label for="input__file" class="input__file-button">
-                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="{% static 'img/download.png' %}" alt="Выбрать файл" width="25"></span>
-                        <span class="input__file-button-text">Выберите фото</span>
-                     </label>
-                  </div>
-                </div>
-
-
-<!--                <div class="col-md-12 mb-3">-->
-<!--                    <div class="loading">Loading</div>-->
-<!--                  <div class="error-message"></div>-->
-<!--                  <div class="sent-message">Your message has been sent. Thank you!</div>-->
+<!--                  <div class="input__wrapper">-->
+<!--                     <input name="file" type="file" id="input__file" class="input input__file" multiple>-->
+<!--                     <label for="input__file" class="input__file-button">-->
+<!--                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="{% static 'img/download.png' %}" alt="Выбрать файл" width="25"></span>-->
+<!--                        <span class="input__file-button-text">Выберите фото</span>-->
+<!--                     </label>-->
+<!--                  </div>-->
 <!--                </div>-->
 
-                <div class="col-md-12 form-group comment-bott">
-                  <input type="submit" class="readmore d-block w-100" value="Оставить комментарий">
-                </div>
-              </div>
 
             </form>
 

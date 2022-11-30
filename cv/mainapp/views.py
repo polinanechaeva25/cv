@@ -1,9 +1,17 @@
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.db.models.functions import Lower
-from django.views.generic import ListView
+from pyexpat.errors import messages
 
-from mainapp.forms import NameForm, EmailForm, SubjectForm, MessageForm
+from django.conf import settings
+from django.contrib import auth
+from django.contrib.auth.models import User
+from django.core.mail import send_mail, BadHeaderError
+from django.db.models.functions import Lower
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.views import View
+from django.views.generic import ListView, CreateView
+
+from mainapp.forms import NameForm, EmailForm, SubjectForm, MessageForm, CreateCommentForm
 from mainapp.models import Comment, Certificate
 
 
@@ -86,3 +94,145 @@ class CommentListView(TitleContextMixin, ListView):
     title = 'Оставить комментарий'
     template_name = 'mainapp/comment.html'
     model = Comment
+
+    def get_context_data(self, **kwargs):
+        context = super(TitleContextMixin, self).get_context_data(**kwargs)
+        context.update(
+            title=self.get_title()
+        )
+        comment_form = CreateCommentForm()
+        context['comment_form'] = comment_form
+
+        return context
+
+
+class CommentCreateView(CreateView):
+
+    form_class = CreateCommentForm
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    def post(self, request, *args, **kwargs):
+        comment_form = self.form_class(self.request.POST, self.request.FILES)
+        if comment_form.is_valid():
+
+            comment_form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        else:
+
+            return HttpResponse('Неверно заполненная форма. Попробуйте еще раз.')
+
+
+
+    # register_form_class = CreateCommentForm
+    #
+    # def send_verify_link(self, comment):
+    #     verify_link = reverse('verify', args=[comment.email, comment.activation_key])
+    #     subject = f'Для комментирования на сайте http://polinanechaeva.pythonanywhere.com пройдите по ссылке'
+    #     message = f'Для потверждения учетной записи {comment.user_name} на портале\n' \
+    #               f'{settings.DOMAIN_NAME} пройдите по ссылке {settings.DOMAIN_NAME}{verify_link}'
+    #     return send_mail(subject, message, settings.EMAIL_HOST_USER, [comment.email], fail_silently=False)
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(CommentListView, self).get_context_data(**kwargs)
+    #     context.update(
+    #         title=self.get_title(),
+    #         register_form=self.register_form_class()
+    #     )
+    #     return context
+    #
+    # def post(self, request, *args, **kwargs):
+    #     register_form = self.register_form_class(request.POST, request.FILES)
+    #
+    #     if register_form.is_valid():
+    #         comment = register_form.save()
+    #         self.send_verify_link(comment)
+    #
+    #         return HttpResponseRedirect(reverse('comment'))
+    #     else:
+    #         return super().get(request, *args, **kwargs)
+
+
+# def verify(request, email, activation_key):
+#     try:
+#         comment = Comment.objects.get(email=email)
+#         if comment.activation_key == activation_key and not comment.is_activation_key_expired():
+#             comment.is_active = True
+#             comment.save()
+#             auth.login(request, comment, backend='django.contrib.auth.backends.ModelBackend')
+#             return render(request, 'mainapp/comment.html')
+#         else:
+#             print(f'error activation user: {comment}')
+#             return render(request, 'mainapp/comment.html')
+#     except Exception as e:
+#         print(f'error activation user : {e.args}')
+#         return HttpResponseRedirect(reverse('index'))
+
+
+# class UserRegisterView(TemplateView):
+
+
+#
+#     def send_verify_link(self, user):
+#         verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
+#         subject = f'Для активации пользователя {user.username} пройдите по ссылке'
+#         message = f'Для потверждения учетной записи {user.username} на портале\n' \
+#                   f'{settings.DOMAIN_NAME} пройдите по ссылке {settings.DOMAIN_NAME}{verify_link}'
+#         return send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
+#
+# def get_context_data(self, **kwargs):
+#     title = 'регистрация'
+#     context = super(UserRegisterView, self).get_context_data(**kwargs)
+#     context.update(
+#         title=title,
+#         register_form=self.register_form_class()
+#     )
+#     return context
+#
+# def post(self, request, *args, **kwargs):
+#     register_form = self.register_form_class(request.POST, request.FILES)
+#
+#     if register_form.is_valid():
+#         user = register_form.save()
+#         self.send_verify_link(user)
+#         return HttpResponseRedirect(reverse('auth:login'))
+#     else:
+#         return super().get(request, *args, **kwargs)
+
+
+class EmailListView(View):
+    form_class1 = NameForm
+    form_class2 = EmailForm
+    form_class3 = SubjectForm
+    form_class4 = MessageForm
+
+    def get(self, request):
+        return redirect("contact")
+
+    def post(self, request):
+
+        name_form = self.form_class1(request.POST)
+        email_form = self.form_class2(request.POST)
+        subject_form = self.form_class3(request.POST)
+        message_form = self.form_class4(request.POST)
+
+        if name_form.is_valid() and email_form.is_valid() and subject_form.is_valid() and message_form.is_valid():
+            body = {
+                'name': name_form.cleaned_data['name'],
+                'subject': subject_form.cleaned_data['subject'],
+                'email': email_form.cleaned_data['email_address'],
+                'message': message_form.cleaned_data['message'],
+            }
+            subject = f"Клиентский запрос, ТЕМА: {body['subject']}"
+            message = f'Email: {body["email"]}\nName:{body["name"]}\nMessage:\n{body["message"]}.'
+            print((subject, message, settings.EMAIL_HOST_USER, ['polina2000_21@mail.ru']))
+            try:
+                print(f'sending message: {message}')
+                send_mail(subject, message, settings.EMAIL_HOST_USER, ['polina2000_21@mail.ru'])
+            except BadHeaderError:
+                print('Nope')
+                return HttpResponse('Invalid header found.')
+            return redirect("contact")
+        else:
+            return HttpResponse('Данные введены неверно, попробуйте еще раз.', charset="utf-8")

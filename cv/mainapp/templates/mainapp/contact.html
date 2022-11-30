@@ -24,45 +24,42 @@
         <div class="row">
           <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
             
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{% url 'email' %}" method="post" role="form">
               
               <div class="row">
                 <div class="col-md-6 form-group">
 								{% csrf_token %}
 								{{ name_form.as_p }}
 
-<!--                  <label for="name">Имя</label>-->
-<!--                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />-->
-<!--                  <div class="validate"></div>-->
+
+                  <div class="form-error">{{ name_form.errors }}</div>
+
                 </div>
                 <div class="col-md-6 form-group">
                                 {% csrf_token %}
 								{{ email_form.as_p }}
-<!--                  <label for="name">Email</label>-->
-<!--                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />-->
-<!--                  <div class="validate"></div>-->
+
+                  <p>{{ email_form.email.errors }}</p>
+
+                                    <div class="form-error">{{ email_form.name.errors }}</div>
+
                 </div>
                 <div class="col-md-12 form-group">
                                   {% csrf_token %}
 								{{ subject_form.as_p }}
-<!--                  <label for="name">Тема</label>-->
-<!--                  <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
+
+                     <div class="form-error">{{ subject_form.name.errors }}</div>
+
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-12 form-group">
                                   {% csrf_token %}
 								{{ message_form.as_p }}
-<!--                  <label for="name">Текст</label>-->
-<!--                  <textarea class="form-control" name="message" cols="30" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>-->
-<!--                  <div class="validate"></div>-->
+
+                             <div class="form-error">{{ message_form.name.errors }}</div>
+
                 </div>
 
-
-<!--                <div class="col-md-12 mb-3">-->
-<!--                    <div class="loading">Loading</div>-->
-<!--                  <div class="error-message"></div>-->
-<!--                  <div class="sent-message">Your message has been sent. Thank you!</div>-->
-<!--                </div>-->
 
                 <div class="col-md-6 form-group">
                   <input type="submit" class="readmore d-block w-100" value="Отправить письмо">
