@@ -38,6 +38,8 @@ class CreateCommentForm(forms.ModelForm):
         model = Comment
         fields = ('user_name', 'email', 'web_site', 'comment', 'photo')
 
+    # error_css_class = "has-error"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -78,3 +80,12 @@ class CreateCommentForm(forms.ModelForm):
                 css_class='row'
             )
         )
+
+    def save(self):
+        comment = super(CreateCommentForm, self).save()
+
+        comment.is_checked = False
+        salt = hashlib.sha1(str(random.random()).encode('utf8')).hexdigest()[:6]
+        comment.activation_key = hashlib.sha1((comment.email + salt).encode('utf8')).hexdigest()
+        comment.save(update_fields=['is_checked', 'activation_key'])
+        return comment

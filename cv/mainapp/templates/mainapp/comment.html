@@ -7,7 +7,6 @@
 
     <div class="site-section pb-0 site-portfolio comment-center">
       <div class="container">
-
         <div class="row mb-5 align-items-end">
           <div class="col-md-8" data-aos="fade-up">
             <h2>Оставте отзыв на мою работу</h2>
@@ -15,66 +14,16 @@
               Поделитесь своими эмоциями по поводу нашего сотрудничества, расскажите о плюсах и недостатках!
             </p>
           </div>
-
         </div>
-
         <div class="row">
           <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up">
-
-
-
             <form action="/comment/create/" method="post" role="form" enctype="multipart/form-data">
-
-
                     {% csrf_token %}
                     {% crispy comment_form %}
-
-
-<!--              <div class="row">-->
-
-
-
-
-<!--                <div class="col-md-12 form-group">-->
-
-<!--                  <div class="input__wrapper">-->
-<!--                     <input name="file" type="file" id="input__file" class="input input__file" multiple>-->
-<!--                     <label for="input__file" class="input__file-button">-->
-<!--                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="{% static 'img/download.png' %}" alt="Выбрать файл" width="25"></span>-->
-<!--                        <span class="input__file-button-text">Выберите фото</span>-->
-<!--                     </label>-->
-<!--                  </div>-->
-<!--                </div>-->
-
-
             </form>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   </main>
- <script>
-    let inputs = document.querySelectorAll('.input__file');
-    Array.prototype.forEach.call(inputs, function (input) {
-      let label = input.nextElementSibling,
-        labelVal = label.querySelector('.input__file-button-text').innerText;
-
-      input.addEventListener('change', function (e) {
-        let countFiles = '';
-        if (this.files && this.files.length >= 1)
-          countFiles = this.files.length;
-
-        if (countFiles > 1)
-          label.querySelector('.input__file-button-text').innerText = 'Выберете только 1 файл! ';
-        else if (countFiles == 1)
-          label.querySelector('.input__file-button-text').innerText = 'Файл выбран: ' + e.target.value.split( '\\' ).pop();
-        else
-          label.querySelector('.input__file-button-text').innerText = labelVal;
-      });
-    });
-  </script>
 {% endblock %}

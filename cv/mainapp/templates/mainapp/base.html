@@ -60,15 +60,10 @@
   {%block 'banner' %}
   <nav class="navbar navbar-light custom-navbar">
     <div class="container">
-        <a class="navbar-brand image-blurred-edge" href="{% url 'about' %}"></a>
-
-
+      <a class="navbar-brand image-blurred-edge" href="{% url 'about' %}"></a>
       <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">
         <span></span>
       </a>
-
-
-
     </div>
   </nav>
   {% endblock %}
@@ -114,7 +109,9 @@
   <script src="{% static 'vendor/aos/aos.js' %}"></script>
   <script src="{% static 'vendor/owlcarousel/owl.carousel.min.js' %}"></script>
 
+
   <!-- Template Main JS File -->
+  <script src="{% static 'js/img-text.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   {% endblock %}
 

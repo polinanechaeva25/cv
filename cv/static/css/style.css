@@ -839,3 +839,7 @@ h6,
 .asteriskField {
     display: none;
 }
+
+.btn-primary:hover{
+    border-color: #3b3218;
+}

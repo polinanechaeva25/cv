@@ -1,0 +1,17 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% if comment.is_checked %}
+        <h3>Поздравляем!</h3>
+        <h4>Почта {{comment.email}} подтверждена.</h4>
+    {% else %}
+        <h3>Верификация не пройдена.</h3>
+    {% endif %}
+
+    <br>
+    <button class="btn btn-round form-control">
+        <a href="{% url 'index' %}" class="">на главную</a>
+    </button>
+
+{% endblock %}

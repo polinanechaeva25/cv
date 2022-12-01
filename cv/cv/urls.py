@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls.static import static
 
 from cv import settings
 from mainapp.views import MainListView, AboutListView, WorksListView, ContactListView, EducationListView, \
-    CommentListView, EmailListView, CommentCreateView
+    CommentListView, EmailListView, CommentCreateView, verify
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,6 +16,6 @@ urlpatterns = [
     path('comment/', CommentListView.as_view(), name='comment'),
     path('comment/create/', CommentCreateView.as_view(), name='create'),
     path('email/', EmailListView.as_view(), name='email'),
-    # path('verify/', verify, name='verify'),
+    re_path(r'^verify/(?P<email>.+)/(?P<activation_key>\w+)/$', verify, name='verify')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

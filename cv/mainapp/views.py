@@ -107,98 +107,46 @@ class CommentListView(TitleContextMixin, ListView):
 
 
 class CommentCreateView(CreateView):
-
+    template_name = 'mainapp/comment.html'
+    model = Comment
     form_class = CreateCommentForm
 
     def get(self, request, *args, **kwargs):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+    def send_verify_link(self, comment):
+        verify_link = reverse('verify', args=[comment.email, comment.activation_key])
+        subject = f'Для комментирования на сайте http://polinanechaeva.pythonanywhere.com пройдите по ссылке'
+        message = f'Для того, чтобы оставить комментарий под именем {comment.user_name} на портале\n' \
+                  f'{settings.DOMAIN_NAME} необходимо подтвердить адрес e-mail, для этого пройдите по ссылке' \
+                  f' {settings.DOMAIN_NAME}{verify_link}'
+        return send_mail(subject, message, settings.EMAIL_HOST_USER, [comment.email], fail_silently=False)
+
     def post(self, request, *args, **kwargs):
         comment_form = self.form_class(self.request.POST, self.request.FILES)
         if comment_form.is_valid():
-
-            comment_form.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            comment = comment_form.save()
+            self.send_verify_link(comment)
+            return HttpResponseRedirect(reverse('comment'))
+            # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
-
-            return HttpResponse('Неверно заполненная форма. Попробуйте еще раз.')
-
-
-
-    # register_form_class = CreateCommentForm
-    #
-    # def send_verify_link(self, comment):
-    #     verify_link = reverse('verify', args=[comment.email, comment.activation_key])
-    #     subject = f'Для комментирования на сайте http://polinanechaeva.pythonanywhere.com пройдите по ссылке'
-    #     message = f'Для потверждения учетной записи {comment.user_name} на портале\n' \
-    #               f'{settings.DOMAIN_NAME} пройдите по ссылке {settings.DOMAIN_NAME}{verify_link}'
-    #     return send_mail(subject, message, settings.EMAIL_HOST_USER, [comment.email], fail_silently=False)
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super(CommentListView, self).get_context_data(**kwargs)
-    #     context.update(
-    #         title=self.get_title(),
-    #         register_form=self.register_form_class()
-    #     )
-    #     return context
-    #
-    # def post(self, request, *args, **kwargs):
-    #     register_form = self.register_form_class(request.POST, request.FILES)
-    #
-    #     if register_form.is_valid():
-    #         comment = register_form.save()
-    #         self.send_verify_link(comment)
-    #
-    #         return HttpResponseRedirect(reverse('comment'))
-    #     else:
-    #         return super().get(request, *args, **kwargs)
+            return super().get(request, *args, **kwargs)
+            # return HttpResponse('Неверно заполненная форма. Попробуйте еще раз.')
 
 
-# def verify(request, email, activation_key):
-#     try:
-#         comment = Comment.objects.get(email=email)
-#         if comment.activation_key == activation_key and not comment.is_activation_key_expired():
-#             comment.is_active = True
-#             comment.save()
-#             auth.login(request, comment, backend='django.contrib.auth.backends.ModelBackend')
-#             return render(request, 'mainapp/comment.html')
-#         else:
-#             print(f'error activation user: {comment}')
-#             return render(request, 'mainapp/comment.html')
-#     except Exception as e:
-#         print(f'error activation user : {e.args}')
-#         return HttpResponseRedirect(reverse('index'))
-
-
-# class UserRegisterView(TemplateView):
-
-
-#
-#     def send_verify_link(self, user):
-#         verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
-#         subject = f'Для активации пользователя {user.username} пройдите по ссылке'
-#         message = f'Для потверждения учетной записи {user.username} на портале\n' \
-#                   f'{settings.DOMAIN_NAME} пройдите по ссылке {settings.DOMAIN_NAME}{verify_link}'
-#         return send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
-#
-# def get_context_data(self, **kwargs):
-#     title = 'регистрация'
-#     context = super(UserRegisterView, self).get_context_data(**kwargs)
-#     context.update(
-#         title=title,
-#         register_form=self.register_form_class()
-#     )
-#     return context
-#
-# def post(self, request, *args, **kwargs):
-#     register_form = self.register_form_class(request.POST, request.FILES)
-#
-#     if register_form.is_valid():
-#         user = register_form.save()
-#         self.send_verify_link(user)
-#         return HttpResponseRedirect(reverse('auth:login'))
-#     else:
-#         return super().get(request, *args, **kwargs)
+def verify(request, email, activation_key):
+    try:
+        comment = Comment.objects.get(email=email)
+        if comment.activation_key == activation_key and not comment.is_activation_key_expired():
+            comment.is_checked = True
+            comment.save()
+            return render(request, 'mainapp/varification.html')
+        else:
+            print(f'error activation user: {comment}')
+            return render(request, 'mainapp/varification.html')
+    except Exception as e:
+        print(f'error activation user : {e.args}')
+        return HttpResponseRedirect(reverse('index'))
 
 
 class EmailListView(View):
