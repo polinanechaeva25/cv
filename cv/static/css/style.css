@@ -565,6 +565,7 @@ h6,
 .mb-30{
     margin-bottom: 30px}
 
+
 .img-site{
     border-radius: 2%;
     box-shadow: 0.4em 0.4em 30px rgba(122,122,122,0.5);
@@ -842,4 +843,23 @@ h6,
 
 .btn-primary:hover{
     border-color: #3b3218;
+}
+.btn-primary:focus{
+    background-color: #94730d !important;
+    border-color: #ca9a1b !important;
+    box-shadow: 0 0 0 0.2rem rgb(204 85 0 / 25%) !important;
+}
+.btn-primary:active{
+    color: #fff !important;
+    background-color: #94730d !important;
+    border-color: #94730d !important;
+}
+/* Прибила подвал к полу!!!!! */
+.wrapper{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    flex-grow: 1;
 }

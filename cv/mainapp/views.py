@@ -140,12 +140,13 @@ def verify(request, email, activation_key):
         if comment.activation_key == activation_key and not comment.is_activation_key_expired():
             comment.is_checked = True
             comment.save()
-            return render(request, 'mainapp/varification.html')
+            print(request.GET)
+            return render(request, 'mainapp/verification.html', context={'comment': comment})
         else:
-            print(f'error activation user: {comment}')
-            return render(request, 'mainapp/varification.html')
+            print(f'error activation comment: {comment}')
+            return render(request, 'mainapp/verification.html', context={'comment': comment})
     except Exception as e:
-        print(f'error activation user : {e.args}')
+        print(f'error activation comment : {e.args}')
         return HttpResponseRedirect(reverse('index'))
 
 

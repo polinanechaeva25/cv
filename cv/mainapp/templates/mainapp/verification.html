@@ -1,17 +1,40 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% block content %}
 
-    {% if comment.is_checked %}
-        <h3>Поздравляем!</h3>
-        <h4>Почта {{comment.email}} подтверждена.</h4>
-    {% else %}
-        <h3>Верификация не пройдена.</h3>
-    {% endif %}
+{% block 'content' %}
 
-    <br>
-    <button class="btn btn-round form-control">
-        <a href="{% url 'index' %}" class="">на главную</a>
-    </button>
+<main id="main">
+
+    <div class="site-section pb-0 site-portfolio comment-center">
+      <div class="container">
+        <div class="row mb-50 align-items-end">
+          <div class="col-md-8" data-aos="fade-up">
+              {% if comment.is_checked %}
+                <h2>Поздравляем!</h2>
+                <p class="mb-0">
+                 Почта {{comment.email}} подтверждена.
+                </p>
+              {% else %}
+
+                <h2>Верификация не пройдена.</h2>
+                {% endif %}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6  mt-40" data-aos="fade-up">
+            <button class="readmore d-block w-100">
+                <a href="{% url 'index' %}" class="">на главную</a>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+
+
 
 {% endblock %}
