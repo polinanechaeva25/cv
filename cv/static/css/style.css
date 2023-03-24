@@ -863,3 +863,7 @@ h6,
 .top{
     flex-grow: 1;
 }
+.lawed{
+    height: 100%;
+    object-fit: cover;
+}
